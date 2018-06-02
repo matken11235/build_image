@@ -20,8 +20,12 @@ RUN update-alternatives --install /usr/bin/clang   clang   /usr/bin/clang-6.0 99
  && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-6.0 999
 
 # Install cmake
-RUN apt-get update -qq \
- && apt-get install -y -qq cmake
+RUN wget https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz \
+ && tar -xzvf cmake-3.11.3.tar.gz \
+ && cd cmake-3.11.3.tar.gz \
+ && ./bootstrap \
+ && make -j4 \
+ && make install
 
 # Install boost
 RUN apt-get update -qq \
