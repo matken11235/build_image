@@ -3,6 +3,14 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND noninteractive
 
 
+# Install cmake
+RUN wget https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz \
+ && tar -xzvf cmake-3.11.3.tar.gz \
+ && cd cmake-3.11.3 \
+ && ./bootstrap \
+ && make -j4 \
+ && make install
+
 # Install clang-6.0
 RUN apt-get update -qq && \
     apt-get install -y -qq wget apt-file && \
@@ -18,14 +26,6 @@ RUN update-alternatives --install /usr/bin/clang   clang   /usr/bin/clang-6.0 99
  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 999 \
  && update-alternatives --install /usr/bin/cc  cc  /usr/bin/clang-6.0 999 \
  && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-6.0 999
-
-# Install cmake
-RUN wget https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz \
- && tar -xzvf cmake-3.11.3.tar.gz \
- && cd cmake-3.11.3 \
- && ./bootstrap \
- && make -j4 \
- && make install
 
 # Install boost
 RUN apt-get update -qq \
