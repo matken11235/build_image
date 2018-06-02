@@ -4,7 +4,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 # Install cmake
-RUN wget https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz \
+RUN apt-get update -qq \
+ && apt-get install -y -qq wget gcc build-essential \
+ && wget -q https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz \
  && tar -xzvf cmake-3.11.3.tar.gz \
  && cd cmake-3.11.3 \
  && ./bootstrap \
