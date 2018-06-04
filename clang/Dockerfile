@@ -16,7 +16,7 @@ RUN apt-get update -qq \
 
 # Install boost-1.67.0
 RUN apt-get update -qq \
- && apt-get install -y -qq curl \
+ && apt-get install -y -qq curl libbz2-dev zlib1g-dev autotools-dev libicu-dev python-dev \
  && curl -fsSLO https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2 \
  && tar -jxvf boost_1_67_0.tar.bz2 \
  && cd boost_1_67_0 \
