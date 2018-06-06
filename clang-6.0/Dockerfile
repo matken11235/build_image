@@ -34,7 +34,7 @@ RUN apt-get update -qq \
  && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
  && apt-get update -qq \
  && apt-get install -y -qq aptitude \
- && aptitude install -y -qq clang-6.0
+ && aptitude install -y clang-6.0
 
 # Link clang
 RUN update-alternatives --install /usr/bin/clang   clang   /usr/bin/clang-6.0 999 \
