@@ -1,5 +1,5 @@
 #FROM ubuntu:16.04
-FROM gcc:7
+FROM gcc:8
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -16,11 +16,12 @@ RUN apt-get update -qq \
 
 # Install boost-1.67.0
 RUN apt-get update -qq \
- && apt-get install -y -qq curl libbz2-dev zlib1g-dev autotools-dev libicu-dev python-dev \
+ && apt-get install -y -qq curl build-essential python-dev autotools-dev libicu-dev build-essential libbz2-dev libboost-all-dev \
  && curl -fsSLO https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2 \
  && tar -jxvf boost_1_67_0.tar.bz2 \
  && cd boost_1_67_0 \
  && ./bootstrap.sh --prefix=/usr \
+ && ./b2 \
  && ./b2 install
 
 
