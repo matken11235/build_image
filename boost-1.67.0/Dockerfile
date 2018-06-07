@@ -13,3 +13,6 @@ RUN apt-get update -qq \
  && ./b2 \
  && ./b2 install
 
+# Uninstall gcc
+RUN apt-get remove --auto-remove -y gcc
+

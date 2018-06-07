@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install cmake-3.11.3
 RUN apt-get update -qq \
- && apt-get install -y -qq wget \
+ && apt-get install -y -qq build-essential gcc wget \
  libcurl4-gnutls-dev \
  libtinfo5 \
  libstdc++6 \
