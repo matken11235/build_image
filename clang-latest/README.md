@@ -1,6 +1,3 @@
 ## clang
-### What is included
-* clang
-* cmake
-* boost
+depends on boost:1.67.0
 
