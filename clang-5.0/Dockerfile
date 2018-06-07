@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install clang-5.0
 RUN apt-get update -qq \
+ && apt-get upgrade -y -qq \
  && apt-get install -y -qq wget \
  apt-file \
  libc++abi-dev \
