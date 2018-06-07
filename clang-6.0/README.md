@@ -1,3 +1,3 @@
 ## clang
-depends on boost:1.67.0
+depends on matken11235/boost:1.67.0
 
