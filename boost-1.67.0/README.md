@@ -1,2 +1,2 @@
 # boost
-depends on cmake-3.11.3
+depends on matken11235/cmake-3.11.3
