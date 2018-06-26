@@ -43,7 +43,7 @@ RUN apt-get install -y curl wget git make sudo \
     # http://blog.danielberkompas.com
     && touch /etc/init.d/couchdb \
     # install latest elixir package
-    && apt-get install -y elixir erlang-dev erlang-dialyzer erlang-parsetools \
+    && apt-get install -y elixir erlang-dev erlang-dialyzer erlang-parsetools erlang-xmerl \
     # clean up after ourselves
     && apt-get clean
 #RUN apt-get install -y -qq libwxbase2.8-0 libwxbase3.0-0 libwxbase3.0-0v5 libwxgtk2.8-0 libwxgtk3.0-0 libwxgtk3.0-0v5 libsctp1 \
