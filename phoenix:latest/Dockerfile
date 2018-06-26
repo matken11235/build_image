@@ -31,15 +31,12 @@ RUN apt-get install -y -qq nodejs npm \
  && ln -sf /usr/local/bin/npm /usr/bin/npm
 
 # Erlang & Elixir
-RUN curl -s https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb -o /tmp/erlang.deb \
+RUN curl -fsSL https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_21.0-1~ubuntu~xenial_amd64.deb -o /tmp/erlang.deb \
  && dpkg -i /tmp/erlang.deb \
  && rm -rf /tmp/erlang.deb \
- && apt-get update -qq \
- && apt-get upgrade -y -qq \
- && apt-get install -y -qq \
-      esl-erlang \
-      elixir=1.6.0-1
-    ## Show versions -> apt-cache show elixir
+ && curl -fsSL https://packages.erlang-solutions.com/erlang/elixir/FLAVOUR_2_download/elixir_1.6.6-1~ubuntu~xenial_amd64.deb -o /tmp/elixir.deb \
+ && dpkg -i /tmp/elixir.deb \
+ && rm -rf /tmp/elixir.deb \
 
 # Elm-Lang
 RUN npm i -g elm --unsafe-perm=true --allow-root
