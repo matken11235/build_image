@@ -42,8 +42,7 @@ RUN curl -s https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb -
     ## Show versions -> apt-cache show elixir
 
 # Elm-Lang
-RUN npm i -g elm --unsafe-perm=true --allow-root \
- && npm i -g elm-github-install --unsafe-perm=true --allow-root
+RUN npm i -g elm --unsafe-perm=true --allow-root
 
 # Phoenix framework
 RUN mix local.hex --force \
