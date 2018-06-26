@@ -31,12 +31,28 @@ RUN apt-get install -y -qq nodejs npm \
  && ln -sf /usr/local/bin/npm /usr/bin/npm
 
 # Erlang & Elixir
-RUN curl -fsSL https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_21.0-1~ubuntu~xenial_amd64.deb -o /tmp/erlang.deb \
- && dpkg -i /tmp/erlang.deb \
- && rm -rf /tmp/erlang.deb \
- && curl -fsSL https://packages.erlang-solutions.com/erlang/elixir/FLAVOUR_2_download/elixir_1.6.6-1~ubuntu~xenial_amd64.deb -o /tmp/elixir.deb \
- && dpkg -i /tmp/elixir.deb \
- && rm -rf /tmp/elixir.deb \
+RUN apt-get install -y curl wget git make sudo \
+    # download and install Erlang apt repo package
+    && wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
+    && dpkg -i erlang-solutions_1.0_all.deb \
+    && apt-get update \
+    && rm erlang-solutions_1.0_all.deb \
+    # For some reason, installing Elixir tries to remove this file
+    # and if it doesn't exist, Elixir won't install. So, we create it.
+    # Thanks Daniel Berkompas for this tip.
+    # http://blog.danielberkompas.com
+    && touch /etc/init.d/couchdb \
+    # install latest elixir package
+    && apt-get install -y elixir erlang-dev erlang-dialyzer erlang-parsetools \
+    # clean up after ourselves
+    && apt-get clean
+#RUN apt-get install -y -qq libwxbase2.8-0 libwxbase3.0-0 libwxbase3.0-0v5 libwxgtk2.8-0 libwxgtk3.0-0 libwxgtk3.0-0v5 libsctp1 \
+# && curl -fsSL https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_21.0-1~ubuntu~xenial_amd64.deb -o /tmp/erlang.deb \
+# && dpkg -i /tmp/erlang.deb \
+# && rm -rf /tmp/erlang.deb \
+# && curl -fsSL https://packages.erlang-solutions.com/erlang/elixir/FLAVOUR_2_download/elixir_1.6.6-1~ubuntu~xenial_amd64.deb -o /tmp/elixir.deb \
+# && dpkg -i /tmp/elixir.deb \
+# && rm -rf /tmp/elixir.deb
 
 # Elm-Lang
 RUN npm i -g elm --unsafe-perm=true --allow-root
