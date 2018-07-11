@@ -16,6 +16,14 @@ RUN apt-get update -qq \
  && make -j4 \
  && make install
 
+# Install yaml-cpp >=0.6.0
+RUN git clone https://github.com/jbeder/yaml-cpp.git \
+ && cd yaml-cpp \
+ && mkdir build \
+ && cd build \
+ && cmake .. \
+ && make install
+
 # Install boost-1.67.0
 RUN apt-get update -qq \
  && apt-get install -y -qq curl build-essential python-dev autotools-dev libicu-dev build-essential libbz2-dev libboost-all-dev \
