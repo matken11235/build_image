@@ -9,6 +9,9 @@ RUN apt-get update -qq \
  && apt-get install -y -qq wget \
  apt-file \
  libc++abi-dev \
+ g++-8 \
+ git \
+ ssh \
  && apt-file update \
  && apt-get install -y -qq software-properties-common \
  && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
@@ -39,10 +42,24 @@ RUN apt-get update -qq \
  && make -j4 \
  && make install
 
+# Install yaml-cpp >=0.6.0
+RUN git clone https://github.com/jbeder/yaml-cpp.git \
+ && cd yaml-cpp \
+ && mkdir build \
+ && cd build \
+ && cmake .. \
+ && make install
 
 # Install boost-1.67.0
 RUN apt-get update -qq \
- && apt-get install -y -qq curl build-essential python-dev autotools-dev libicu-dev build-essential libbz2-dev libboost-all-dev \
+ && apt-get install -y -qq curl \
+ build-essential \
+ python-dev \
+ autotools-dev \
+ libicu-dev \
+ build-essential \
+ libbz2-dev \
+ libboost-all-dev \
  && curl -fsSLO https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2 \
  && tar -jxvf boost_1_67_0.tar.bz2 \
  && cd boost_1_67_0 \
