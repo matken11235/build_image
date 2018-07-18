@@ -34,7 +34,7 @@ for f in "${files[@]}"; do
     fi
 
     build_dir=$(dirname "$f")
-    base="${build_dir%%\/*}"
+    base="${build_dir##*/}"
 
     (
     set -x
