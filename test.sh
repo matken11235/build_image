@@ -29,9 +29,7 @@ unset IFS
 
 # build the changed dockerfiles
 for f in "${files[@]}"; do
-    if ! [[ -e "$f" ]]; then
-        continue
-    fi
+    ! [[ -e "$f" ]] && continue
 
     build_dir=$(dirname "$f")
     base="${build_dir##*/}"
@@ -42,6 +40,6 @@ for f in "${files[@]}"; do
     )
 
     echo "                       ---                                   "
-    echo "Successfully built ${base}:${suite} with context ${build_dir}"
+    echo "Successfully built ${base} with context ${build_dir}"
     echo "                       ---                                   "
 done
