@@ -15,4 +15,3 @@ RUN apt-get update -qq \
 
 # Uninstall gcc
 RUN apt-get remove --auto-remove -y gcc
-
