@@ -65,6 +65,18 @@ RUN apt-get update -qq \
  && ./bootstrap.sh --prefix=/usr \
  && ./b2 \
  && ./b2 install
+ 
+# Install CVC4
+RUN git clone https://github.com/cvc4/cvc4 \
+ && mkdir -p cvc4pref \
+ && CVC4PREF=$HOME/cvc4pref \
+ && cd cvc4/ \
+ && ./autogen.sh
+ && ./contrib/get-antlr-3.4
+ && ./configure --with-antlr-dir=`pwd`/antlr-3.4 ANTLR=`pwd`/antlr-3.4/bin/antlr3 --prefix=$CVC4PREF
+ && make
+ && make check
+ && make install
 
 
 ENV CC="clang" CXX="clang++" CMAKE_C_COMPILER="clang" CMAKE_CXX_COMPILER="clang++"
