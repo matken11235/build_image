@@ -1,6 +1,4 @@
-FROM gcc:8
-
-ENV DEBIAN_FRONTEND noninteractive
+FROM matken11235/poac:gcc-8-boost
 
 # Install CVC4
 RUN apt-get update -qq \

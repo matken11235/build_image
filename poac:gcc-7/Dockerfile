@@ -1,7 +1,5 @@
 FROM matken11235/poac:gcc-7-boost
 
-ENV DEBIAN_FRONTEND noninteractive
-
 # Install CVC4
 RUN apt-get update -qq \
  && apt-get install -y -qq openjdk-8-jdk \
