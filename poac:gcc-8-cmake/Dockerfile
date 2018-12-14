@@ -1,7 +1,5 @@
 FROM gcc:8
 
-ENV DEBIAN_FRONTEND noninteractive
-
 # Install cmake-3.11.3
 RUN apt-get update -qq \
  && apt-get install -y -qq \
@@ -11,9 +9,14 @@ RUN apt-get update -qq \
  libcurl4-gnutls-dev \
  libtinfo5 \
  libstdc++6 \
- && wget -q https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN wget -q https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz
  && tar -xzf cmake-3.11.3.tar.gz \
- && cd cmake-3.11.3 \
+ && rm -rf cmake-3.11.3.tar.gz
+
+RUN cd cmake-3.11.3 \
  && ./bootstrap \
  && make -j4 --silent \
  && make install --silent
