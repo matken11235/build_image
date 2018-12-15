@@ -8,8 +8,10 @@ RUN apt-get update -qq \
  && ./contrib/get-antlr-3.4 \
  && ./contrib/get-symfpu \
  && ./contrib/get-gmp \
+ && cp ./gmp-6.1.2/lib/* /usr/local/lib/ \
+ && cp -r ./gmp-6.1.2/include/* /usr/local/include/ \
  && sed -i -e 's/cmake_opts=""/cmake_opts="-DCMAKE_BUILD_WITH_INSTALL_RPATH=1"/' configure.sh \
- && ./configure.sh --static --symfpu --gmp-dir=gmp-6.1.2 \
+ && ./configure.sh --static --symfpu \
  && cd build \
  && make -j2 \
  && make check \
@@ -30,4 +32,4 @@ RUN apt-get update -qq \
        /usr/local/include/smt_util \
        /usr/local/include/theory \
        /usr/local/include/util \
-       /usr/local/include/cvc4 \
+       /usr/local/include/cvc4
