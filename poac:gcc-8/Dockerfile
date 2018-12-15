@@ -9,7 +9,7 @@ RUN apt-get update -qq \
  && ./contrib/get-symfpu \
  && ./contrib/get-gmp \
  && sed -i -e 's/cmake_opts=""/cmake_opts="-DCMAKE_BUILD_WITH_INSTALL_RPATH=1"/' configure.sh \
- && ./configure.sh --static --symfpu \
+ && ./configure.sh --static --symfpu --gmp-dir=gmp-6.1.2 \
  && cd build \
  && make -j2 \
  && make check \
