@@ -7,7 +7,7 @@ RUN brew update \
                  gcc@6 \
                  gcc@7 \
                  gcc@8 \
-                 llvm@6 \
+                 llvm@6
 
 # Install CVC4
 RUN apt-get update -qq \
