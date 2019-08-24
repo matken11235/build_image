@@ -3,15 +3,20 @@ name: Docker Image CI
 on: [push]
 
 jobs:
-  build-poac_gcc-8:
+  build:
+    name: Build ${{ matrix.image }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [
+          "phoenix:latest",
+          "cmake:3.11.3",
+          "boost:1.67.0",
+          "clang:5.0",
+          "clang:6.0"
+        ]
+
     steps:
     - uses: actions/checkout@v1
-    - name: Build poac:gcc-8-cmake
-      run: docker build ./poac:gcc-8-cmake --tag poac:gcc-8-cmake
-    - name: Build poac:gcc-8-yaml-cpp
-      run: docker build ./poac:gcc-8-yaml-cpp --tag poac:gcc-8-yaml-cpp
-    - name: Build poac:gcc-8-boost
-      run: docker build ./poac:gcc-8-boost --tag poac:gcc-8-boost
-    - name: Build poac:gcc-8
-      run: docker build ./poac:gcc-8 --tag poac:gcc-8
+    - name: Docker build
+      run: docker build ./${{ matrix.image }} --tag ${{ matrix.image }}
